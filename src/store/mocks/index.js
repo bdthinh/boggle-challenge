@@ -5,6 +5,7 @@ import dictionaryData from '../../static/dictionary.txt';
 
 export const getTiles = () => {
   if (boardData) {
+    console.log('boardData', boardData);
     return Promise.resolve(boardData.split(',').map(trim));
   }
   return Promise.reject(new Error('Cannot read board'));

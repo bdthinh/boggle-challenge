@@ -1,7 +1,12 @@
+import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import arrayMiddleware from '../../middlewares/arrayMiddleware';
+
 import {
   tilesInputSelector,
   tilesPositionMapSelector,
   buildPositionMap,
+  setupTilesBoard,
 } from '../tiles';
 
 const EXAMPLE_TILES = ['T', 'A', 'P', '*', 'E', 'A', 'K', 'S', 'O', 'B', 'R', 'S', 'S', '*', 'X', 'D'];
@@ -57,5 +62,16 @@ describe('tiles state', () => {
       Y: [3, 13],
       Z: [3, 13],
     });
+  });
+
+  it('should dispatch enough actions', async () => {
+    const mockStore = configureStore([thunk, arrayMiddleware]);
+    const store = mockStore({});
+    await store.dispatch(setupTilesBoard());
+
+    expect(store.getActions()).toEqual(expect.arrayContaining([
+      expect.objectContaining({ type: 'TILES/SET_TILES_INPUT' }),
+      expect.objectContaining({ type: 'TILES/UPDATE_POSITION_MAP' }),
+    ]));
   });
 });
