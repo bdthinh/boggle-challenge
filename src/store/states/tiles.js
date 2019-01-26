@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { flow, over, path, reduce } from 'lodash/fp';
+import { flow, over, path } from 'lodash/fp';
 import { handleAction } from 'redux-actions';
 
 import { getTiles } from '../mocks';
@@ -8,7 +8,6 @@ export const SET_TILES_INPUT = 'TILES/SET_TILES_INPUT';
 export const UPDATE_POSITION_MAP = 'TILES/UPDATE_POSITION_MAP';
 export const UPDATE_SEQUENCE = 'TILES/UPDATE_SEQUENCE';
 export const RESET = 'TILES/RESET';
-
 
 export const tilesInputSelector = path('tiles.input');
 export const tilesPositionMapSelector = path('tiles.positionMap');
@@ -23,9 +22,7 @@ export const setInput = tiles => ({ type: SET_TILES_INPUT, payload: tiles });
 
 export const updatePositionMap = positionMap => ({ type: UPDATE_POSITION_MAP, payload: positionMap });
 
-const reduceWithIndex = reduce.convert({ cap: false });
-
-const buildPositionMap = reduceWithIndex((book, value, index) => {
+const buildPositionMap = tiles => tiles.reduce((book, value, index) => {
   if (value !== '*') {
     // eslint-disable-next-line
     book[value] = book[value] || [];
@@ -58,7 +55,7 @@ const input = handleAction(
 );
 
 const positionMap = handleAction(
-  SET_TILES_INPUT,
+  UPDATE_POSITION_MAP,
   takePayload,
   {},
 );

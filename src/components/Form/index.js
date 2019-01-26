@@ -10,8 +10,6 @@ import CustomInputOnly from './CustomInputOnly';
 import { validateWord } from '../../store/states/sequence';
 import { appendWord } from '../../store/states/resultList';
 
-import sequenceFunctions from '../../utils/sequenceFunctions';
-
 import { VALID_STATE } from '../../store/states/validations/sequenceValidation';
 
 const connectToRedux = connect(
@@ -25,11 +23,21 @@ const connectToRedux = connect(
 
 const withValidation = withState('validation', 'setValidation', VALID_STATE);
 
-const withOnSubmit = withProps(({ onAppendWord, onResetForm }) => ({
-  onSubmit: sequenceFunctions(
-    onAppendWord,
-    onResetForm,
+const withOnValidateFieldWord = withProps(({
+  setValidation,
+  onValidateWord,
+}) => ({
+  onValidateFieldWord: ({ target: { value: word } }) => (
+    onValidateWord(word).then(setValidation)
   ),
+}));
+
+
+const withOnSubmit = withProps(({ onAppendWord, onResetForm }) => ({
+  onSubmit: ({ word }) => {
+    onAppendWord(word);
+    onResetForm();
+  },
 }));
 
 const withReduxForm = reduxForm({
@@ -40,8 +48,9 @@ const withReduxForm = reduxForm({
 
 const enhance = compose(
   setDisplayName('BoggleForm'),
-  withValidation,
   connectToRedux,
+  withValidation,
+  withOnValidateFieldWord,
   withOnSubmit,
   withReduxForm,
   debounceHandler('onValidateWord', 100),
@@ -52,7 +61,7 @@ const BoggleForm = ({
   handleSubmit,
   onCancel,
   validation: { valid, error },
-  onValidateWord,
+  onValidateFieldWord,
   submitting,
   pristine,
 }) => (
@@ -61,7 +70,7 @@ const BoggleForm = ({
       <div className="fieldset">
         <Field
           component={CustomInputOnly}
-          onValidate={[onValidateWord]}
+          onValidate={[onValidateFieldWord]}
           autoFocus
           autoComplete="off"
           type="text"

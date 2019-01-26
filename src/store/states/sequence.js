@@ -24,18 +24,18 @@ export const updateSequence = currentSequence => ({
 
 export const resetSequence = () => ({ type: RESET });
 
-export const validateWord = combination => (dispatch, getState) => {
+export const validateWord = word => async (dispatch, getState) => {
   const state = getState();
 
   const positionMap = tilesPositionMapSelector(state);
   const resultList = resultListSelector(state);
 
-  const resultValidation = checkCombinationInResultList(combination, resultList);
+  const resultValidation = checkCombinationInResultList(word, resultList);
   if (!resultValidation.valid) {
     return resultValidation;
   }
 
-  const combinationValidation = checkCombinationPossible(combination, positionMap);
+  const combinationValidation = checkCombinationPossible(word, positionMap);
   if (!combinationValidation.valid) {
     dispatch(resetSequence());
     return combinationValidation;

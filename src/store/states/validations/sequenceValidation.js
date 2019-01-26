@@ -1,5 +1,5 @@
 /* eslint-disable no-loop-func */
-import { forEach, flow, map, filter, last, split } from 'lodash/fp';
+import { path, forEach, flow, map, filter, last, split } from 'lodash/fp';
 
 export const VALID_STATE = { valid: true, error: '' };
 
@@ -31,10 +31,14 @@ const canChoose = (from, to) => {
 export const checkCombinationPossible = (combination, positionMap) => {
   const positionsConversion = flow(
     split(''),
-    map(alphabet => positionMap[alphabet]),
+    map(alphabet => positionMap[alphabet.toUpperCase()]),
   )(combination);
 
   const noOfLadders = positionsConversion.length;
+
+  if (noOfLadders === 0) {
+    return ({ ...VALID_STATE, data: [] });
+  }
 
   const sequenceBook = {
     0: map(position => ([position]), positionsConversion[0]),
@@ -61,7 +65,8 @@ export const checkCombinationPossible = (combination, positionMap) => {
       )(nextLadder)
     ), currentLadder);
   }
-  const currentSequence = sequenceBook[noOfLadders - 1][0];
+
+  const currentSequence = path('[0]', sequenceBook[noOfLadders - 1]);
   if (!currentSequence) {
     return ({
       valid: false,
