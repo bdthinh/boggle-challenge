@@ -47,9 +47,11 @@ In order to get more insight of the game, I refers to some online game Boggle
 	- [Puzzle game online boggle](https://www.puzzle-words.com/boggle-4x4/)
 	- [WorldWist game online boggle](https://www.wordtwist.org/html5.php?u=11931af6736c4f5d96b015da9c7b944e1548366680)
 
-Look like I understand how to play the game clearly. It's time for Design Studio. To get as many as possible actions, comments, thinking, I will create 4 version from 4:star: design to 7:star: designs
+Look like I understand how to play the game clearly. It's time for Design Studio. To get as many as possible actions, comments, thinking, I will create 4 versions from 4-stars design to 7-stars design.
 
+---
 #### :star::star::star::star:
+Specs:
 - Display a board 4x4 button with tiles and a accepted (words) result list
 - Allow user to click on any tile at position [i, j]
 	- When user click on any tile
@@ -74,6 +76,7 @@ Look like I understand how to play the game clearly. It's time for Design Studio
 
 ---
 #### :star::star::star::star::star:
+Specs:
 - Display a board 4x4 button with tiles and a accepted (words) result list
 - Display a form with single text field allow user to input
 - Allow user to input the form to combine word
@@ -94,8 +97,8 @@ Look like I understand how to play the game clearly. It's time for Design Studio
 
 ---
 #### :star::star::star::star::star::star:
-
-- Upgrade from 5stars design
+Specs:
+- Upgrade from 5-stars design
 - While user type, synchronous checking
 	- either highlight possible sequence can combine word
 	- either display errors if there is no such any combination on the board
@@ -109,9 +112,10 @@ Look like I understand how to play the game clearly. It's time for Design Studio
 
 ---
 #### :star::star::star::star::star::star::star:
+Specs:
 - Upgrade from 6stars design
 - While user type, suggestions will appear as clickable buttons
-	- Ex: **if** typing `c` **then** suggest `ca`, `cu`, `co` if the sequence is possible and that word may exist in dictionary
+	- Ex: **if** typing `c` **then** suggest `ca`, `ce`, `co` if the sequence is possible and that word may exist in dictionary
 	- Ex: **if** typing `ca` **then** suggest `cat`, `can`, `cap` if the sequence is possible and that word may exist in dictionary
 
 
@@ -131,7 +135,7 @@ Look like I understand how to play the game clearly. It's time for Design Studio
 	- exists in dictionary
 
 ## KICKOFF on project
-- Choose 6stars design as a **MVP**
+- Choose 6-stars design as a **MVP**
 
 |      EPIC      |TECH FEASIBLE                           |
 |----------------|-------------------------------|
@@ -145,17 +149,29 @@ Look like I understand how to play the game clearly. It's time for Design Studio
 ## DEVELOPMENT
 
 ### POC
+- Load tiles
+- Load dictionary
+- Check combination is possible
+- Search in dictionary
+- Time constraint
 
 ### STYLING
 
 ### QA
 
 ## DEPLOYMENT
-
-###
+Use https://zeit.co/now
 
 ## RETROSPECTIVE
 
 ### FUN
+- Game challenge
+- Modification `*`
 ### FRUSTRATING
-### ENHANCEMENTS
+- fs on FE
+- date-fns on different node version and with browser, too (8. vs 10.)
+### ENHANCEMENTS IN FUTURE
+- Split BE with API support
+	- GET /tiles
+	- POST /check_combination
+- Multiple player with slack bot
