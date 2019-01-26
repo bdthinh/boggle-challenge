@@ -2,9 +2,23 @@ import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
 import compact from 'lodash/fp/compact';
 import { createLogger } from 'redux-logger';
+import { createEpicMiddleware } from 'redux-observable';
 
 import { createReducer } from './rootReducer';
+import rootEpic from './rootEpic';
 import arrayMiddleware from './middlewares/arrayMiddleware';
+
+const epicMiddleware = createEpicMiddleware(rootEpic);
+
+if (module.hot) {
+  module.hot.accept('./rootEpic', () => {
+    // eslint-disable-next-line global-require
+    const nextRootEpic = require('./rootEpic').default;
+
+    epicMiddleware.replaceEpic(nextRootEpic);
+  });
+}
+
 
 const loggerMiddleware = createLogger({
   level: 'info',
@@ -22,6 +36,7 @@ const composeEnhancers =
 const middlewares = [
   thunk,
   arrayMiddleware,
+  epicMiddleware,
 ];
 
 if (process.env.NODE_ENV === 'development') {
