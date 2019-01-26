@@ -5,7 +5,7 @@
   "description": "boggle",
   "scripts": {
     "start": "node ./app.js",
-    "dev": "nodemon --watch ./src --watch ./cli ./cli/web.js",
+    "dev": "node ./cli/web.js",
     "debug": "node inspect ./cli/dev-server.js",
     "test": "NODE_ENV=test jest --logHeapUsage --runInBand",
     "build": "rimraf build && NODE_ENV=production webpack --display-error-details --progress --config ./cli/webpack.prod.js",
