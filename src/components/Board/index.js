@@ -6,10 +6,12 @@ import {
   tilesInputSelector,
   setupTilesBoard,
 } from '../../store/states/tiles';
+import { currentSequenceSelector } from '../../store/states/sequence';
 
 const connectToRedux = connect(
   state => ({
     tiles: tilesInputSelector(state),
+    currentSequence: currentSequenceSelector(state),
   }),
   {
     onLoad: setupTilesBoard,
@@ -29,9 +31,13 @@ const enhance = compose(
   setDisplayName('PureBoard'),
 );
 
-const Board = ({ tiles }) => (
+const Board = ({ tiles, currentSequence }) => (
   <div className="board-container">
-    {tiles.map((tile, index) => <div key={index} className="tiles">{tile}</div>)}
+    {tiles.map((tile, index) => (
+      <div key={index} className={`tile ${currentSequence.includes(index) && 'highlight'}`}>
+        {tile}
+      </div>
+    ))}
   </div>
 );
 

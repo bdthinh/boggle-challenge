@@ -1,6 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 
+import './styles/index.scss';
+
 import Board from './components/Board';
 import ResultList from './components/ResultList';
 import Form from './components/Form';

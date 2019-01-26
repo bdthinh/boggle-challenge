@@ -59,17 +59,10 @@ webpackConfig.module.rules.push(
       {
         loader: "css-loader",
         options: {
-          modules: true,
           importLoaders: 1
         }
       }, {
         loader: "sass-loader",
-        options: {
-          data: `
-            @import '${path.join(srcPath, "static/styles/base")}/variables';
-            @import '${path.join(srcPath, "static/styles/base")}/mixin';
-          `
-        }
       },
     ]
   }, {

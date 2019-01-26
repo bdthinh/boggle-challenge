@@ -128,7 +128,6 @@ webpackConfig.module.rules.push(
         {
           loader: "css-loader",
           options: {
-            modules: true,
             importLoaders: 2
           }
         }, {

@@ -40,6 +40,7 @@ export const validateWord = word => async (dispatch, getState) => {
     dispatch(resetSequence());
     return combinationValidation;
   }
+
   dispatch(updateSequence(combinationValidation.data));
 
   return VALID_STATE;
