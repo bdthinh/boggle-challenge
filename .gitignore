@@ -1,0 +1,14 @@
+node_modules
+.web
+build
+coverage
+*.swp
+*.swo
+.cache-loader
+**/.DS_Store
+.eslintcache
+.env
+.staging.env
+.prod.env
+yarn-error.log
+log.txt
