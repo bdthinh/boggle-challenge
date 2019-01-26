@@ -1,4 +1,5 @@
 import React from 'react';
+import EventListener from 'react-event-listener';
 import { connect } from 'react-redux';
 import { withState, withProps, setDisplayName, compose } from 'recompose';
 import { reduxForm, Field, reset } from 'redux-form';
@@ -53,6 +54,7 @@ const BoggleForm = ({
   validation: { valid, error },
   onValidateWord,
   submitting,
+  pristine,
 }) => (
   <div className="form">
     <form className={`boggle-form ${!valid && 'field-error'}`} onSubmit={handleSubmit}>
@@ -64,6 +66,7 @@ const BoggleForm = ({
           autoComplete="off"
           type="text"
           name="word"
+          required
         />
 
         {!valid && <div className="field-msg-error">
@@ -71,11 +74,15 @@ const BoggleForm = ({
         </div>}
       </div>
 
-      <button type="submit" disabled={!valid}>
+      <button type="submit" disabled={!valid || submitting || pristine}>
         {submitting ? 'Checking...' : 'Save'}
       </button>
       <button className="btn-second-type" onClick={onCancel}>Clear</button>
     </form>
+    <EventListener
+      target="window"
+      onKeyUp={e => (e.keyCode === 27 ? handleSubmit() : null)}
+    />
   </div>
 );
 
