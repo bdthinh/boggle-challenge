@@ -85,6 +85,14 @@ webpackConfig.module.rules.push(
       }
     ]
   }, {
+    test: /\.(txt)$/,
+    include: srcPath,
+    use: [
+      {
+        loader: "raw-loader",
+      }
+    ]
+  }, {
     test: /\.(png|jpe?g|gif|webp)$/,
     include: srcPath,
     use: [
