@@ -1,9 +1,14 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 
-const Root = () => (
-  <div>
-    Root
-  </div>
+import Board from '../Board';
+
+const Root = ({ store }) => (
+  <Provider store={store}>
+    <div className="container">
+      <Board />
+    </div>
+  </Provider>
 );
 
 export default Root;

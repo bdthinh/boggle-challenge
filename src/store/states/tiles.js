@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { flow, over, path, reduce } from 'lodash/fp';
 import { handleAction } from 'redux-actions';
 
-import { getTiles } from '../mock/data';
+import { getTiles } from '../mocks';
 
 export const SET_TILES_INPUT = 'TILES/SET_TILES_INPUT';
 export const UPDATE_POSITION_MAP = 'TILES/UPDATE_POSITION_MAP';
