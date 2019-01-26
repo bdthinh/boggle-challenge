@@ -1,23 +1,18 @@
 {
-  "env": {
-    "development": {
-      "presets": [
-        [
-          "@babel/preset-env",
-          {
-            "targets": { "node": "8" },
-            "modules": false
-          }
-        ],
-        "@babel/preset-react",
-        "@babel/preset-stage-2"
-      ],
-      "plugins": [
-        "lodash",
-        "react-intl",
-        "@babel/plugin-transform-react-jsx-self",
-        "@babel/plugin-transform-react-jsx-source"
-      ]
-    },
-  }
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": { "node": "8" },
+      }
+    ],
+    "@babel/preset-react",
+    "@babel/preset-stage-2"
+  ],
+  "plugins": [
+    "lodash",
+    "react-intl",
+    "@babel/plugin-transform-react-jsx-self",
+    "@babel/plugin-transform-react-jsx-source"
+  ]
 }

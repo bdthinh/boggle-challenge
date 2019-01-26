@@ -11,7 +11,6 @@ export const RESET = 'TILES/RESET';
 
 export const tilesInputSelector = path('tiles.input');
 export const tilesPositionMapSelector = path('tiles.positionMap');
-export const tilesCurrentSequenceSelector = path('tiles.currentSequence');
 
 const ALPHABETS = [
   'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
@@ -22,7 +21,7 @@ export const setInput = tiles => ({ type: SET_TILES_INPUT, payload: tiles });
 
 export const updatePositionMap = positionMap => ({ type: UPDATE_POSITION_MAP, payload: positionMap });
 
-const buildPositionMap = tiles => tiles.reduce((book, value, index) => {
+export const buildPositionMap = tiles => tiles.reduce((book, value, index) => {
   if (value !== '*') {
     // eslint-disable-next-line
     book[value] = book[value] || [];
