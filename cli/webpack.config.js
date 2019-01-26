@@ -20,6 +20,8 @@ module.exports = {
 
   plugins: [
     new CopyWebpackPlugin([
+      { from: "static/TestBoard.txt" },
+      { from: "static/dictionary.txt" },
       { from: "static/humans.txt" },
       { from: "static/robots.txt" },
       { from: "static/offline.html" },
