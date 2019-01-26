@@ -3,7 +3,8 @@ import thunk from 'redux-thunk';
 import compact from 'lodash/fp/compact';
 import { createLogger } from 'redux-logger';
 
-import { createReducer } from './reducers/rootReducer';
+import { createReducer } from './rootReducer';
+import arrayMiddleware from './middlewares/arrayMiddleware';
 
 const loggerMiddleware = createLogger({
   level: 'info',
@@ -14,12 +15,13 @@ const loggerMiddleware = createLogger({
 const composeEnhancers =
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && process.env.NODE_ENV === 'development' ?
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-      name: 'SSS',
+      name: 'BOGGLE',
     }) : compose;
 /* eslint-enable no-underscore-dangle */
 
 const middlewares = [
   thunk,
+  arrayMiddleware,
 ];
 
 if (process.env.NODE_ENV === 'development') {
@@ -37,9 +39,9 @@ export default (initialState = {}) => {
   const store = createStore(rootReducer, initialState, composeEnhancers(...enhancers));
 
   if (module.hot) {
-    module.hot.accept('./reducers/rootReducer', () => {
+    module.hot.accept('./rootReducer', () => {
       // eslint-disable-next-line global-require
-      const createNextReducer = require('./reducers/rootReducer').default;
+      const createNextReducer = require('./rootReducer').default;
       const nextRootReducer = createNextReducer();
       store.replaceReducer(nextRootReducer);
     });
