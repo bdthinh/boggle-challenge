@@ -44,7 +44,7 @@ const buildPositionMap = reduceWithIndex((book, value, index) => {
 export const setupTilesBoard = () => dispatch => (
   getTiles()
     .then(flow(
-      over([setInput, buildPositionMap]),
+      over([setInput, flow(buildPositionMap, updatePositionMap)]),
       dispatch
     ))
 );

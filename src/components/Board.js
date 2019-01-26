@@ -31,7 +31,7 @@ const enhance = compose(
 
 const Board = ({ tiles }) => (
   <div className="board-container">
-    {tiles.map(tile => <div className="tiles">{tile}</div>)}
+    {tiles.map((tile, index) => <div key={index} className="tiles">{tile}</div>)}
   </div>
 );
 
