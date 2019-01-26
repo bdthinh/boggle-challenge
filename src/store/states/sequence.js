@@ -1,4 +1,3 @@
-/* eslint-disable no-loop-func */
 import { combineReducers } from 'redux';
 import { path } from 'lodash/fp';
 import { handleAction } from 'redux-actions';
