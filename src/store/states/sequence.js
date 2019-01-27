@@ -33,7 +33,6 @@ export const validateWord = word => async (dispatch, getState) => {
   if (!resultValidation.valid) {
     return resultValidation;
   }
-
   const combinationValidation = checkCombinationPossible(word, positionMap);
   if (!combinationValidation.valid) {
     dispatch(resetSequence());
