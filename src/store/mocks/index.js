@@ -18,4 +18,4 @@ const createDictionary = () => {
 
 const dictionary = createDictionary();
 
-export const isInDictionary = word => dictionary.find(item => new RegExp(`^${word}$`, 'i').test(item));
+export const isInDictionary = word => dictionary.has(word.toLowerCase());

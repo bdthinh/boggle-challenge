@@ -27,7 +27,9 @@ describe('resultList state', () => {
 
     await store.dispatch(appendWord('PASS'));
 
-    expect(store.getActions()).toEqual([]);
+    expect(store.getActions()).toEqual(expect.arrayContaining([
+      expect.objectContaining({ type: 'TOAST/SHOW_NOTIFICATION', payload: expect.objectContaining({ type: 'error' }) }),
+    ]));
   });
 
   it('should append word not yet in resultList', async () => {
@@ -56,7 +58,7 @@ describe('resultList state', () => {
     await store.dispatch(appendWord('PASS'));
 
     expect(store.getActions()).toEqual(expect.arrayContaining([
-      expect.objectContaining({ type: 'TOAST/SHOW_NOTIFICATION' }),
+      expect.objectContaining({ type: 'TOAST/SHOW_NOTIFICATION', payload: expect.objectContaining({ type: 'success' }) }),
     ]));
   });
 });

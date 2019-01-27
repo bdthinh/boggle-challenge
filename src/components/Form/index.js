@@ -59,7 +59,7 @@ const enhance = compose(
 
 const BoggleForm = ({
   handleSubmit,
-  onCancel,
+  onResetForm,
   validation: { valid, error },
   onValidateFieldWord,
   submitting,
@@ -67,6 +67,7 @@ const BoggleForm = ({
 }) => (
   <div className="form">
     <form className={`boggle-form ${!valid && 'field-error'}`} onSubmit={handleSubmit}>
+      <legend>Enter new word</legend>
       <div className="fieldset">
         <Field
           component={CustomInputOnly}
@@ -86,7 +87,7 @@ const BoggleForm = ({
       <button type="submit" disabled={!valid || submitting || pristine}>
         {submitting ? 'Checking...' : 'Save'}
       </button>
-      <button className="btn-second-type" onClick={onCancel}>Clear</button>
+      <button className="btn-second-type" onClick={onResetForm}>Clear</button>
     </form>
     <EventListener
       target="window"

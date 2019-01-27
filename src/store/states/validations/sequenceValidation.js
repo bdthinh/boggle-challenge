@@ -31,7 +31,7 @@ export const canChoose = (from, to) => {
 export const checkCombinationPossible = (combination, positionMap) => {
   const positionsConversion = flow(
     split(''),
-    map(alphabet => positionMap[alphabet.toUpperCase()]),
+    map(alphabet => positionMap[alphabet]),
   )(combination);
 
   const noOfLadders = positionsConversion.length;

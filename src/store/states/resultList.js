@@ -2,7 +2,7 @@
 import { flow, path } from 'lodash/fp';
 import { handleAction } from 'redux-actions';
 
-import { notifySuccess } from './toast';
+import { notifySuccess, notifyError } from './toast';
 
 import { isInDictionary } from '../mocks';
 
@@ -18,10 +18,10 @@ export const appendWord = word => (dispatch, getState) => {
   if (!resultList.includes(word) && isInDictionary(word)) {
     return dispatch([
       { type: APPEND_WORD, payload: word },
-      notifySuccess('Correctly'),
+      notifySuccess('Correct!'),
     ]);
   }
-  return undefined;
+  return dispatch(notifyError('Wrong!'));
 };
 
 const resultList = handleAction(

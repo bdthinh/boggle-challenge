@@ -6,8 +6,8 @@ import './styles/index.scss';
 import Board from './components/Board';
 import ResultList from './components/ResultList';
 import Form from './components/Form';
-import Timer from './components/Timer';
 import Toast from './components/Toast';
+import Timer from './components/Timer';
 
 import './styles/vendor/sweetalert.min.css';
 
@@ -18,12 +18,14 @@ import '../node_modules/rxjs/add/operator/debounceTime';
 const Root = ({ store }) => (
   <Provider store={store}>
     <div className="container">
-      <Board />
-      <div>
+      <div className="left">
+        <Timer />
+        <Board />
+      </div>
+      <div className="right">
         <ResultList />
         <Form />
       </div>
-      <Timer />
       <Toast />
     </div>
   </Provider>

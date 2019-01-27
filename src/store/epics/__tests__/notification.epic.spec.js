@@ -26,6 +26,6 @@ describe('toast state', () => {
         expect.objectContaining({ type: 'TOAST/SHOW_NOTIFICATION' }),
         expect.objectContaining({ type: 'TOAST/CLOSE_NOTIFICATION' }),
       ]));
-    }, 3000);
+    }, 5000);
   });
 });

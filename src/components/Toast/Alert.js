@@ -10,7 +10,7 @@ import { alertShownSelector } from '../../store/states/toast';
 const connectToRedux = connect(
   state => ({
     shown: alertShownSelector(state),
-    numerOfWords: resultListLengthSelector(state),
+    numberOfWords: resultListLengthSelector(state),
   }),
 );
 

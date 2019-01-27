@@ -7,6 +7,7 @@ import {
   notificationShownSelector,
   notificationSelector,
   notifySuccess,
+  notifyError,
 } from '../toast';
 
 describe('toast state', () => {
@@ -14,7 +15,7 @@ describe('toast state', () => {
     toast: {
       alert: true,
       notification: {
-        message: 'Correctly',
+        message: 'Correct!',
         duration: 5000,
         type: 'success',
         shown: true,
@@ -32,20 +33,30 @@ describe('toast state', () => {
 
   it('should return correct notification', () => {
     expect(notificationSelector(state)).toEqual({
-      message: 'Correctly',
+      message: 'Correct!',
       duration: 5000,
       type: 'success',
       shown: true,
     });
   });
 
-  it('should dispatch notification with correct action payload', async () => {
+  it('should dispatch success notification with correct action payload', async () => {
     const mockStore = configureStore([thunk, arrayMiddleware]);
     const store = mockStore({});
     await store.dispatch(notifySuccess('correct'));
 
     expect(store.getActions()).toEqual(expect.arrayContaining([
-      expect.objectContaining({ type: 'TOAST/SHOW_NOTIFICATION', payload: { message: 'correct', type: 'success', duration: 3000 } }),
+      expect.objectContaining({ type: 'TOAST/SHOW_NOTIFICATION', payload: { message: 'correct', type: 'success', duration: 5000 } }),
+    ]));
+  });
+
+  it('should dispatch error notification with correct action payload', async () => {
+    const mockStore = configureStore([thunk, arrayMiddleware]);
+    const store = mockStore({});
+    await store.dispatch(notifyError('wrong'));
+
+    expect(store.getActions()).toEqual(expect.arrayContaining([
+      expect.objectContaining({ type: 'TOAST/SHOW_NOTIFICATION', payload: { message: 'wrong', type: 'error', duration: 5000 } }),
     ]));
   });
 });
