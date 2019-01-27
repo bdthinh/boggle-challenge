@@ -4,6 +4,8 @@ import { handleAction } from 'redux-actions';
 
 import { notifySuccess } from './toast';
 
+import { isInDictionary } from '../mocks';
+
 export const APPEND_WORD = 'RESULT/APPEND_WORD';
 
 export const resultListSelector = path('resultList');
@@ -13,7 +15,7 @@ export const appendWord = word => (dispatch, getState) => {
   const state = getState();
   const resultList = resultListSelector(state);
 
-  if (!resultList.includes(word)) {
+  if (!resultList.includes(word) && isInDictionary(word)) {
     return dispatch([
       { type: APPEND_WORD, payload: word },
       notifySuccess('Correctly'),

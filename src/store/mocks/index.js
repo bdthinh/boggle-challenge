@@ -1,11 +1,11 @@
 import { trim } from 'lodash/fp';
+import { Set } from 'immutable';
 
 import boardData from '../../static/TestBoard.txt';
 import dictionaryData from '../../static/dictionary.txt';
 
 export const getTiles = () => {
   if (boardData) {
-    console.log('boardData', boardData);
     return Promise.resolve(boardData.split(',').map(trim));
   }
   return Promise.reject(new Error('Cannot read board'));
@@ -13,7 +13,9 @@ export const getTiles = () => {
 
 const createDictionary = () => {
   const dictionary = dictionaryData.split('\n');
-  return new Set(dictionary);
+  return Set(dictionary);
 };
 
-export const dictionary = createDictionary();
+const dictionary = createDictionary();
+
+export const isInDictionary = word => dictionary.find(item => new RegExp(`^${word}$`, 'i').test(item));
