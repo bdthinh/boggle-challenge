@@ -13,7 +13,7 @@ const connectToRedux = connect(
   },
 );
 
-const TIME = 4 * 60 * 1000;
+const TIME = 10 * 60 * 1000;
 
 const deadline = Date.now() + TIME;
 
