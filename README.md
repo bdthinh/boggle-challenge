@@ -174,6 +174,8 @@ Specs:
 ## DEPLOYMENT
 Use https://zeit.co/now
 
+Production: https://boggle-xqktvwwoxj.now.sh/
+
 ## RETROSPECTIVE
 
 ### FUN
