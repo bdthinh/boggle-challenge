@@ -23,12 +23,13 @@ const connectToRedux = connect(
 
 const withValidation = withState('validation', 'setValidation', VALID_STATE);
 
+const upper = value => value && value.toUpperCase();
 const withOnValidateFieldWord = withProps(({
   setValidation,
   onValidateWord,
 }) => ({
   onValidateFieldWord: ({ target: { value: word } }) => (
-    onValidateWord(word).then(setValidation)
+    onValidateWord(upper(word)).then(setValidation)
   ),
 }));
 
@@ -77,6 +78,7 @@ const BoggleForm = ({
           type="text"
           name="word"
           required
+          normalize={upper}
         />
 
         {!valid && <div className="field-msg-error">
@@ -87,7 +89,7 @@ const BoggleForm = ({
       <button type="submit" disabled={!valid || submitting || pristine}>
         {submitting ? 'Checking...' : 'Save'}
       </button>
-      <button className="btn-second-type" onClick={onResetForm}>Clear</button>
+      <button onClick={onResetForm}>Clear</button>
     </form>
     <EventListener
       target="window"
