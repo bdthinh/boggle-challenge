@@ -15,7 +15,7 @@ export const checkCombinationInResultList = (combination, resultList) => {
 
 const INCREMENTS = [-5, -4, -3, -1, 1, 3, 4, 5];
 
-const canChoose = (from, to) => {
+export const canChoose = (from, to) => {
   if (from === to) {
     return false;
   }
