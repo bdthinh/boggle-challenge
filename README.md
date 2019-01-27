@@ -155,6 +155,13 @@ Specs:
 - Search in dictionary
 - Time constraint
 
+### SPEC
+- Test selectors
+- Test thunks
+- Test rootReducer
+- Test epics
+- Test utils functions
+
 ### STYLING
 
 ### QA
