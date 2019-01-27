@@ -165,6 +165,11 @@ Specs:
 ### STYLING
 
 ### QA
+- board
+- form
+- result list
+- time constraint
+- notification
 
 ## DEPLOYMENT
 Use https://zeit.co/now
@@ -174,9 +179,11 @@ Use https://zeit.co/now
 ### FUN
 - Game challenge
 - Modification `*`
+
 ### FRUSTRATING
 - fs on FE
 - date-fns on different node version and with browser, too (8. vs 10.)
+
 ### ENHANCEMENTS IN FUTURE
 - Split BE with API support
 	- GET /tiles
