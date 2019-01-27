@@ -5,7 +5,7 @@ import arrayMiddleware from '../../middlewares/arrayMiddleware';
 import {
   resultListSelector,
   resultListLengthSelector,
-  appendWord,
+  submitWord,
 } from '../resultList';
 
 describe('resultList state', () => {
@@ -25,7 +25,7 @@ describe('resultList state', () => {
     const mockStore = configureStore([thunk, arrayMiddleware]);
     const store = mockStore(initialState);
 
-    await store.dispatch(appendWord('PASS'));
+    await store.dispatch(submitWord('PASS'));
 
     expect(store.getActions()).toEqual(expect.arrayContaining([
       expect.objectContaining({ type: 'TOAST/SHOW_NOTIFICATION', payload: expect.objectContaining({ type: 'error' }) }),
@@ -40,7 +40,7 @@ describe('resultList state', () => {
     const mockStore = configureStore([thunk, arrayMiddleware]);
     const store = mockStore(initialState);
 
-    await store.dispatch(appendWord('PASS'));
+    await store.dispatch(submitWord('PASS'));
 
     expect(store.getActions()).toEqual(expect.arrayContaining([
       expect.objectContaining({ type: 'RESULT/APPEND_WORD' }),
@@ -55,7 +55,7 @@ describe('resultList state', () => {
     const mockStore = configureStore([thunk, arrayMiddleware]);
     const store = mockStore(initialState);
 
-    await store.dispatch(appendWord('PASS'));
+    await store.dispatch(submitWord('PASS'));
 
     expect(store.getActions()).toEqual(expect.arrayContaining([
       expect.objectContaining({ type: 'TOAST/SHOW_NOTIFICATION', payload: expect.objectContaining({ type: 'success' }) }),

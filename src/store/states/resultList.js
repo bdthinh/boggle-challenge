@@ -11,13 +11,15 @@ export const APPEND_WORD = 'RESULT/APPEND_WORD';
 export const resultListSelector = path('resultList');
 export const resultListLengthSelector = flow(resultListSelector, path('length'));
 
-export const appendWord = word => (dispatch, getState) => {
+const appendWord = word => ({ type: APPEND_WORD, payload: word });
+
+export const submitWord = word => (dispatch, getState) => {
   const state = getState();
   const resultList = resultListSelector(state);
 
   if (!resultList.includes(word) && isInDictionary(word)) {
     return dispatch([
-      { type: APPEND_WORD, payload: word },
+      appendWord(word),
       notifySuccess('Correct!'),
     ]);
   }

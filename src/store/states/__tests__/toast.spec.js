@@ -16,7 +16,7 @@ describe('toast state', () => {
       alert: true,
       notification: {
         message: 'Correct!',
-        duration: 5000,
+        duration: 3000,
         type: 'success',
         shown: true,
       },
@@ -34,7 +34,7 @@ describe('toast state', () => {
   it('should return correct notification', () => {
     expect(notificationSelector(state)).toEqual({
       message: 'Correct!',
-      duration: 5000,
+      duration: 3000,
       type: 'success',
       shown: true,
     });
@@ -46,7 +46,7 @@ describe('toast state', () => {
     await store.dispatch(notifySuccess('correct'));
 
     expect(store.getActions()).toEqual(expect.arrayContaining([
-      expect.objectContaining({ type: 'TOAST/SHOW_NOTIFICATION', payload: { message: 'correct', type: 'success', duration: 5000 } }),
+      expect.objectContaining({ type: 'TOAST/SHOW_NOTIFICATION', payload: { message: 'correct', type: 'success', duration: 3000 } }),
     ]));
   });
 
@@ -56,7 +56,7 @@ describe('toast state', () => {
     await store.dispatch(notifyError('wrong'));
 
     expect(store.getActions()).toEqual(expect.arrayContaining([
-      expect.objectContaining({ type: 'TOAST/SHOW_NOTIFICATION', payload: { message: 'wrong', type: 'error', duration: 5000 } }),
+      expect.objectContaining({ type: 'TOAST/SHOW_NOTIFICATION', payload: { message: 'wrong', type: 'error', duration: 3000 } }),
     ]));
   });
 });

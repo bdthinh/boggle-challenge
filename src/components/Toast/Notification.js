@@ -29,7 +29,7 @@ const enhance = compose(
 
 const Notification = ({ notification }) => (
   <div className={`page-message message ${notification.type}`}>
-    <div>{notification.message}</div>
+    {notification.message}
   </div>
 );
 

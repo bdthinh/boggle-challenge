@@ -7,17 +7,18 @@ import debounceHandler from '@hocs/debounce-handler';
 
 import CustomInputOnly from './CustomInputOnly';
 
-import { validateWord } from '../../store/states/sequence';
-import { appendWord } from '../../store/states/resultList';
+import { validateWord, resetSequence } from '../../store/states/sequence';
+import { submitWord } from '../../store/states/resultList';
 
 import { VALID_STATE } from '../../store/states/validations/sequenceValidation';
 
 const connectToRedux = connect(
   null,
   {
-    onAppendWord: appendWord,
+    onAppendWord: submitWord,
     onValidateWord: validateWord,
     onResetForm: () => reset('boggleForm'),
+    onResetSequence: resetSequence,
   },
 );
 
@@ -34,10 +35,11 @@ const withOnValidateFieldWord = withProps(({
 }));
 
 
-const withOnSubmit = withProps(({ onAppendWord, onResetForm }) => ({
+const withOnSubmit = withProps(({ onAppendWord, onResetForm, onResetSequence }) => ({
   onSubmit: ({ word }) => {
     onAppendWord(word);
     onResetForm();
+    onResetSequence();
   },
 }));
 
@@ -68,7 +70,11 @@ const BoggleForm = ({
 }) => (
   <div className="form">
     <form className={`boggle-form ${!valid && 'field-error'}`} onSubmit={handleSubmit}>
-      <legend>Enter new word</legend>
+      {valid && <legend>Enter new word</legend>}
+      {!valid && <legend className="field-msg-error">
+        {error}
+      </legend>}
+
       <div className="fieldset">
         <Field
           component={CustomInputOnly}
@@ -80,10 +86,6 @@ const BoggleForm = ({
           required
           normalize={upper}
         />
-
-        {!valid && <div className="field-msg-error">
-          <div className="error-content">{error}</div>
-        </div>}
       </div>
 
       <button type="submit" disabled={!valid || submitting || pristine}>

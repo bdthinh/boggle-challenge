@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { path } from 'lodash/fp';
 import { handleAction } from 'redux-actions';
 
-export const DURATION = 5000;
+export const DURATION = 3000;
 
 export const SHOW_ALERT = 'TOAST/SHOW_ALERT';
 export const SHOW_NOTIFICATION = 'TOAST/SHOW_NOTIFICATION';

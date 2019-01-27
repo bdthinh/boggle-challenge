@@ -19,7 +19,10 @@ const enhance = compose(
 
 const ResultList = ({ resultList }) => (
   <div className="result-list">
-    <legend>CORRECT</legend>
+    <legend>
+      <span>CORRECT</span>
+      {resultList.length > 0 && <span>: {resultList.length}</span>}
+    </legend>
     <div className="words">
       {resultList.map(word => <div key={word} className="word">{word}</div>)}
     </div>
