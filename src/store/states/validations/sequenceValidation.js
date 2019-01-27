@@ -13,19 +13,18 @@ export const checkCombinationInResultList = (combination, resultList) => {
   return VALID_STATE;
 };
 
-const INCREMENTS = [-5, -4, -3, -1, 1, 3, 4, 5];
-
 export const canChoose = (from, to) => {
   if (from === to) {
     return false;
   }
-  // eslint-disable-next-line
-  for (let i = 0; i < INCREMENTS.length; i++) {
-    if (from + INCREMENTS[i] === to) {
-      return true;
-    }
+
+  const [ifrom, jfrom] = [from / 4, from % 4];
+  const [ito, jto] = [to / 4, to % 4];
+
+  if (Math.abs(ifrom - ito) > 1 || Math.abs(jfrom - jto) > 1) {
+    return false;
   }
-  return false;
+  return true;
 };
 
 export const checkCombinationPossible = (combination, positionMap) => {

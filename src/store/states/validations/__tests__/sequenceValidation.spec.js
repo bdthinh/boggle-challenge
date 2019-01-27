@@ -47,8 +47,9 @@ describe('sequenceValidation', () => {
   it('should define correct chosse possibility', () => {
     expect(canChoose(2, 4)).toEqual(false);
     expect(canChoose(2, 5)).toEqual(true);
-    expect(canChoose(3, 0)).toEqual(true);
-    expect(canChoose(0, 3)).toEqual(true);
+    expect(canChoose(3, 0)).toEqual(false);
+    expect(canChoose(0, 3)).toEqual(false);
+    expect(canChoose(8, 3)).toEqual(false);
     expect(canChoose(1, 5)).toEqual(true);
   });
 });
