@@ -13,14 +13,13 @@ export const appendWord = word => (dispatch, getState) => {
   const state = getState();
   const resultList = resultListSelector(state);
 
-  if (resultList.includes(word)) {
-    return Promise.reject(new Error('Word is already in list'));
+  if (!resultList.includes(word)) {
+    return dispatch([
+      { type: APPEND_WORD, payload: word },
+      notifySuccess('Correctly'),
+    ]);
   }
-
-  return dispatch([
-    { type: APPEND_WORD, payload: word },
-    notifySuccess('Correctly'),
-  ]);
+  return undefined;
 };
 
 const resultList = handleAction(
