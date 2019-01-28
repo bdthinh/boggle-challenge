@@ -1,5 +1,27 @@
 # Boggle Challenge
 
+## Updated: if TL;DR;
+
+node 8.9.1, yarn 1.3.2
+```
+yarn
+```
+
+Local development
+```
+yarn run dev
+```
+
+build Production
+```
+yarn run start
+```
+
+Deploy with zeit now (no need to build first)
+```
+now
+```
+
 ## What is boggle challenge
 Boggle is a word game that is played on a 4x4 board with 16 letter tiles.
 The goal is to find as many words as possible given a time constraint.  
